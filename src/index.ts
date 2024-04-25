@@ -1,4 +1,5 @@
 export const SVG = class SVG {
+	constructor(str?: string) {}
 	parse(str: string) {
 		const svg = new SVG();
 
