@@ -1,0 +1,35 @@
+{
+  "name": "@fxcie/svg",
+  "version": "0.1.0",
+  "description": "Francis Carelse's SVG Library",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "prebuild": "mkdir lib && bash -c \"cp src/*.ts lib\"",
+    "build": "bash -c \"npx tsc src/*.ts --outDir lib/cjs --lib es2017 --declaration\"",
+    "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib --target es2017 --declaration\"",
+    "pretest": "npm run build",
+    "test": "npx jest --verbose false --silent false",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fxcie/fxcie-svg.git"
+  },
+  "keywords": [
+    "FXC",
+    "fxcie",
+    "Utilities"
+  ],
+  "author": "Francis Carelse",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/fxcie/fxcie-svg/issues"
+  },
+  "homepage": "https://github.com/fxcie/fxcie-svg#readme",
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
