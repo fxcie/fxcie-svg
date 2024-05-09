@@ -12,7 +12,8 @@
     "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib --target es2017 --declaration\"",
     "pretest": "npm run build",
     "test": "npx jest --verbose false --silent false",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "poc": "npx http-server poc"
   },
   "repository": {
     "type": "git",

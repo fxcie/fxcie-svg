@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:400,800);
+body {
+		font-family: 'Open Sans', sans-serif;
+}
+
+#path,
+.info,
+label,
+ul,
+textarea {
+		font-family: 'Inconsolata', monospace;
+}
+
+.controlpanel {
+		width: 50%;
+}
+
+svg {
+		display: block;
+}
+
+path {
+		stroke: black;
+		stroke-width: 2px;
+}
+
+.col {
+		width: 45%;
+		margin-right: 4%;
+		display: inline-block;
+		vertical-align: top;
+}
+
+#info {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+}
+
+h2 {
+		font-weight: 400;
+		user-select: none;
+		line-height: 100%;
+		margin: .15em 0 0;
+}
+
+textarea {
+		border: 0px;
+		width: 100%;
+		background-color: #eee;
+		padding: 5px;
+		box-sizing: border-box;
+		font-size: 10pt;
+		height: 150px;
+		margin: 1em 0;
+}
+
+label {
+		width: 90px;
+		display: inline-block;
+}
