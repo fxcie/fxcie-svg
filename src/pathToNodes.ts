@@ -62,8 +62,8 @@ export function pathToNodes(path: string): PathNode[] {
 							tokens[0],
 							tokens[1],
 							tokens[2],
-							tokens[3],
-							tokens[4],
+							tokens[3] ? 1 : 0,
+							tokens[4] ? 1 : 0,
 							tokens[5],
 							tokens[6],
 						]);
