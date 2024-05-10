@@ -1,0 +1,191 @@
+import { isNonEmptyString, isString } from "@fxcie/utils";
+import { PATH_COMMANDS_STRING, SVG_ERROR } from "./svg.values";
+import { PATH_COMMAND_CHAR, PathNode } from "./svg.types";
+
+export function pathToNodes(path: string): PathNode[] {
+	const segments: string[] = path
+		.split(
+			new RegExp(`([${PATH_COMMANDS_STRING}][^${PATH_COMMANDS_STRING}]*)`, "gi")
+		)
+		.filter(isNonEmptyString);
+	const nodes: PathNode[] = [];
+	segments.forEach((segment) => {
+		const [command, ...chars] = segment.split("");
+		if (!isString(command)) throw new Error(SVG_ERROR.PATH_PARSE);
+		if (!PATH_COMMANDS_STRING.includes(command.toLowerCase()))
+			throw new Error(SVG_ERROR.PATH_PARSE + " " + command);
+		const tokens = chars
+			.reduce(
+				(tokens: string[], char: string) => {
+					const i = tokens.length - 1;
+					switch (char) {
+						case "-":
+							{
+								tokens.push(char);
+							}
+							break;
+						case " ":
+							{
+								tokens.push("");
+							}
+							break;
+						case ".":
+							if (tokens[i].indexOf(char) != -1) {
+								tokens.push(char);
+								break;
+							} // Continue
+						default:
+							tokens[i] += char;
+					}
+					return tokens;
+				},
+				[""]
+			)
+			.filter(isNonEmptyString)
+			.map(Number);
+		console.log({ command, tokens });
+		// return;
+		switch (command.toLowerCase()) {
+			case PATH_COMMAND_CHAR.A:
+				{
+					if (tokens.length % 7)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([
+							PATH_COMMAND_CHAR.A,
+							tokens[0],
+							tokens[1],
+							tokens[2],
+							tokens[3],
+							tokens[4],
+							tokens[5],
+							tokens[6],
+						]);
+						tokens.splice(0, 7);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.C:
+				{
+					if (tokens.length % 6)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([
+							PATH_COMMAND_CHAR.C,
+							tokens[0],
+							tokens[1],
+							tokens[2],
+							tokens[3],
+							tokens[4],
+							tokens[5],
+						]);
+						tokens.splice(0, 6);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.H:
+				{
+					// if(tokens.length %1) throw new Error(SVG_ERROR.PATH_PARSE+' '+tokens.length);
+					while (tokens.length) {
+						nodes.push([PATH_COMMAND_CHAR.H, tokens[0]]);
+						tokens.splice(0, 1);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.L:
+				{
+					if (tokens.length % 2)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([PATH_COMMAND_CHAR.L, tokens[0], tokens[1]]);
+						tokens.splice(0, 2);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.M:
+				{
+					if (tokens.length % 2)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([PATH_COMMAND_CHAR.M, tokens[0], tokens[1]]);
+						tokens.splice(0, 2);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.Q:
+				{
+					if (tokens.length % 4)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([
+							PATH_COMMAND_CHAR.Q,
+							tokens[0],
+							tokens[1],
+							tokens[2],
+							tokens[3],
+						]);
+						tokens.splice(0, 4);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.S:
+				{
+					if (tokens.length % 4)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([
+							PATH_COMMAND_CHAR.S,
+							tokens[0],
+							tokens[1],
+							tokens[2],
+							tokens[3],
+						]);
+						tokens.splice(0, 4);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.T:
+				{
+					if (tokens.length % 2)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+					while (tokens.length) {
+						nodes.push([PATH_COMMAND_CHAR.T, tokens[0], tokens[1]]);
+						tokens.splice(0, 2);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.V:
+				{
+					// if(tokens.length %1) throw new Error(SVG_ERROR.PATH_PARSE+' '+tokens.length);
+					while (tokens.length) {
+						nodes.push([PATH_COMMAND_CHAR.V, tokens[0]]);
+						tokens.splice(0, 1);
+					}
+				}
+				break;
+			case PATH_COMMAND_CHAR.Z:
+				{
+					if (tokens.length)
+						throw new Error(
+							SVG_ERROR.PATH_PARSE + ` ${command} ${tokens.length}`
+						);
+				}
+				break;
+		}
+	});
+	return nodes;
+}
