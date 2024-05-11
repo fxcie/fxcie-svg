@@ -1,6 +1,6 @@
 {
   "name": "@fxcie/svg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Francis Carelse's SVG Library",
   "main": "lib/index.js",
   "files": [
@@ -9,7 +9,7 @@
   "scripts": {
     "preoldbuild": "bash -c \"mkdir lib; mkdir lib/src; cp src/* lib/src\"",
     "oldbuild": "bash -c \"mkdir lib; mkdir lib/cjs; npx tsc src/*.ts --outDir lib/cjs --lib es2017 --declaration; cp lib/cjs/* lib/.; exit 0\"",
-    "postoldbuild": "bash -c \"mkdir lib; mkdir lib/mts; npx tsc src/*.ts --outDir lib/mts --target es2017 --declaration; cp lib/cjs/* lib/.; exit 0;\"",
+    "postoldbuild": "bash -c \"mkdir lib; mkdir lib/mjs; npx tsc src/*.ts --outDir lib/mjs --target es2017 --declaration; cp lib/cjs/* lib/.; exit 0;\"",
     "build": "bash bin/build.sh",
     "test": "npx jest --verbose false --silent false",
     "prepublish": "npm run build",

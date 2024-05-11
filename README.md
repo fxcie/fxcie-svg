@@ -13,14 +13,19 @@ npm install @fxcie/svg
 
 ```
 // Common JS
-const SVG = require('@fxcie/svg')
+const SVG = require('@fxcie/svg/cjs')
 
 // Module JS
 import { SVG } from '@fxcie/svg'
+or
+import { SVG } from '@fxcie/svg/mjs'
+
+
+// Typescript
+import { SVG } from '@fxcie/svg/src'
+
 ```
 
-## Methods
-
-new SVG(str?: string): Create new SVG handling object with optional SVG string.
+## Static
 
 SVG.fromPath(str: string): Create new SVG from path string.

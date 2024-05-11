@@ -1,14 +1,13 @@
-const { PATH_COMMAND } = require("../lib/svg.values.js");
-const { pathToNodes } = require("../lib/pathToNodes.js");
-const { nodesToPath, modifyPath } = require("../lib/modifyPath.js");
+const { PATH_COMMAND } = require("../lib/cjs/svg.values.js");
+const { pathToNodes } = require("../lib/cjs/pathToNodes.js");
+const { nodesToPath, modifyPath } = require("../lib/cjs/modifyPath.js");
 const fs = require('fs');
 
-var minifiedPath = fs.readFileSync(__dirname + '/data/minifiedPath.txt').toString();
-var nodes = pathToNodes(minifiedPath);;
+const minifiedPath = fs.readFileSync(__dirname + '/data/minifiedPath.txt').toString().replaceAll("\r", "");
 
-var formattedPath = fs.readFileSync(__dirname + '/data/formattedPath.txt').toString();
+const formattedPath = fs.readFileSync(__dirname + '/data/formattedPath.txt').toString().replaceAll("\r", "");
 
-var scaledX2Path = fs.readFileSync(__dirname + '/data/scaledX2Path.txt').toString();
+const scaledX2Path = fs.readFileSync(__dirname + '/data/scaledX2Path.txt').toString().replaceAll("\r", "");
 
 describe('tests', () => {
 	test('formatting matches', () => {
