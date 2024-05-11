@@ -1,7 +1,7 @@
-# fxcie-utils
-My Utilities
+# @fxcie/svg
+My SVG utility
 
-Methods I need to have access to from anywhere.
+SVG handling tool
 
 ## Install
 

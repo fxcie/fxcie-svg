@@ -1,6 +1,6 @@
 {
   "name": "@fxcie/svg",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Francis Carelse's SVG Library",
   "main": "lib/index.js",
   "files": [
