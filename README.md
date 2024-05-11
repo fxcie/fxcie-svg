@@ -28,4 +28,11 @@ import { SVG } from '@fxcie/svg/src'
 
 ## Static
 
-SVG.fromPath(str: string): Create new SVG from path string.
+SVG.modifyPath(path: string, options: PathModifyOptions): Create a modified path.
+
+Path modify options are in an object with the following optional options:
+- scaleX as number;
+- scaleY as number;
+- shiftX as number;
+- shiftY as number;
+- decimalPlaces as number;
