@@ -1,10 +1,10 @@
-import { isNonEmptyString, isString } from "@fxcie/utils";
+import { isNonEmptyString, isString } from "@fxcie/utils/lib/index.js";
 import {
 	PATH_COMMANDS_STRING,
 	PATH_COMMAND_CHAR,
 	SVG_ERROR,
-} from "./svg.values";
-import { PathNode } from "./svg.types";
+} from "./svg.values.js";
+import { PathNode } from "./svg.types.js";
 
 export function pathToNodes(path: string): PathNode[] {
 	const segments: string[] = path
