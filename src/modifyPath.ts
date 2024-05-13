@@ -1,7 +1,6 @@
-import { isNumber } from "@fxcie/utils";
-import { pathToNodes } from "./pathToNodes";
-import { PathModifyOptions, PathNode } from "./svg.types";
-import { DEFAULT_DECIMAL_PLACES, PATH_COMMAND_CHAR } from "./svg.values";
+import { pathToNodes } from "./pathToNodes.js";
+import { PathModifyOptions, PathNode } from "./svg.types.js";
+import { DEFAULT_DECIMAL_PLACES, PATH_COMMAND_CHAR } from "./svg.values.js";
 
 export function nodesToPath(nodes: PathNode[], decimalPlaces?: number): string {
 	decimalPlaces ??= DEFAULT_DECIMAL_PLACES;

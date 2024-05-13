@@ -1,4 +1,7 @@
+import { modifyPath } from 'https://cdn.jsdelivr.net/npm/@fxcie/svg@0.1.3/lib/mjs/modifyPath.js';
+
 var path = document.querySelector(".path"),
+	path2 = document.querySelector(".path2"),
 	w = document.querySelector("#w"),
 	h = document.querySelector("#h"),
 	bbox = document.querySelector(".bbox"),
@@ -22,7 +25,6 @@ function getBoundingBox() {
 	bbox.setAttribute("y", obbox.y);
 	bbox.setAttribute("width", obbox.width * scaleW);
 	bbox.setAttribute("height", obbox.height * scaleH);
-
 	path.style.transform = "scale(" + scaleW + "," + scaleH + ")";
 	var BCR = path.getBoundingClientRect();
 	var sStyle = "translate(" + 0 + "px," + (-BCR.top) + "px) scale(" + scaleW + "," + scaleH + ")";
@@ -30,7 +32,15 @@ function getBoundingBox() {
 	bbox.style.transform = "translate(" + 0 + "px," + (-BCR.top) + "px)";
 	var sCode = "<path d=\"" + userPath.value + "\" style=\"" + sStyle + "\" >";
 	code.value = sCode;
+
+	transmute();
 }
+
+function transmute() {
+	path.setAttribute("d", SVG.modifyPath(userPath.value, { scaleX: 2, scaleY: 2 }));
+
+}
+
 
 function reSize(resizeUsing) {
 
@@ -49,3 +59,5 @@ h.onchange = h.ontouchend = function () {
 };
 
 getBoundingBox();
+
+transmute();
