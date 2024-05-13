@@ -1,4 +1,4 @@
-import { modifyPath } from 'https://cdn.jsdelivr.net/npm/@fxcie/svg@0.1.4/lib/mjs/modifyPath.js';
+import { modifyPath } from 'https://cdn.jsdelivr.net/npm/@fxcie/svg@0.1.6/lib/mjs/modifyPath.js';
 
 var path = document.querySelector(".path"),
 	path2 = document.querySelector(".path2"),
@@ -37,7 +37,7 @@ function getBoundingBox() {
 }
 
 function transmute() {
-	path2.setAttribute("d", SVG.modifyPath(userPath.value, { scaleX: 2, scaleY: 2 }));
+	path2.setAttribute("d", modifyPath(userPath.value, { scaleX: 2, scaleY: 2 }));
 
 }
 
