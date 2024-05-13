@@ -1,5 +1,5 @@
-import { pathToNodes } from "./pathToNodes";
-import { modifyPath, nodesToPath } from "./modifyPath";
+import { pathToNodes } from "./pathToNodes.js";
+import { modifyPath, nodesToPath } from "./modifyPath.js";
 
 export class SVG {
 	private constructor(str?: string) {}

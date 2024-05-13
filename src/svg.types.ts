@@ -1,4 +1,4 @@
-import { PATH_COMMAND_CHAR } from "./svg.values";
+import { PATH_COMMAND_CHAR } from "./svg.values.js";
 
 export type PathModifyOptions = {
 	scaleX?: number;
